@@ -112,7 +112,7 @@ if (!isset($_SESSION["adminloggedin"]) || $_SESSION["adminloggedin"] !== true) {
 		
 		<h1 class="mt-4">Current Documents:</h1>
 		<p></p>
-		
+		<div>
 		<?php
 			$count = 1;
 			//echo var_dump($docs);
@@ -147,6 +147,9 @@ if (!isset($_SESSION["adminloggedin"]) || $_SESSION["adminloggedin"] !== true) {
 				$count++;
 				//echo $count;
 			} ?>
+		</div>
+
+
 		
 			<h1>new current documents</h1>
 			
