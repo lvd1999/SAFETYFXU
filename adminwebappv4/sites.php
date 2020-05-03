@@ -37,7 +37,7 @@ if (!isset($_SESSION["adminloggedin"]) || $_SESSION["adminloggedin"] !== true) {
 <head>
 
 	<?php $page='sites'; include 'includes/head.php'; ?>
-
+	
 </head>
 
 <body>
@@ -84,7 +84,7 @@ if (!isset($_SESSION["adminloggedin"]) || $_SESSION["adminloggedin"] !== true) {
 				
 				<br>
 				<br>
-				<h1> Current Sites: </h1>
+				<!-- <h1> Current Sites: </h1>
 
 				<div class="panel-group" id="accordion">
 					<?php			
@@ -119,8 +119,33 @@ if (!isset($_SESSION["adminloggedin"]) || $_SESSION["adminloggedin"] !== true) {
 				
 
 					
-				</div>
+				</div> -->
 					
+				<h1>new current sites</h1>
+				<?php 
+				foreach($sites as $site) { ?>
+					<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#site<?php echo $site['buildingsiteID'];?>" aria-expanded="false" aria-controls="collapseExample">
+					<?php echo $site['sitename']; ?>
+				  </button>
+					<?php $members = membersBySite($site['buildingsiteID']); ?>
+					<div class="collapse" id="site<?php echo $site['buildingsiteID'];?>">
+						<div class="card card-body">
+							<?php 
+							if(count($members) > 0) { ?>
+							<ul class="list-group">
+							<?php
+							foreach($members as $member){ ?>
+								<a href="view-user.php?userid=<?php echo $member['userID'];?>"><li class="list-group-item"><?php echo $member['userID'] . ': ' .$member['firstname'] . ' ' . $member['surname'];?></li></a>
+							<?php } ?>
+							</ul>
+							<?php } else {echo 'No members in this site.';} ?>
+						</div>
+					</div> <br><br>
+				<?php } ?>
+				
+				
+				
+				
 				
 				<h1> New Sites: </h1>
 				
