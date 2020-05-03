@@ -12,7 +12,7 @@ $certs = get_certs($_GET['userid']);
 
 <head>
 
-  <?php $page='personnel';
+  <?php $page='';
    include 'includes/head.php'; ?>
 
 </head>
@@ -44,12 +44,13 @@ $certs = get_certs($_GET['userid']);
         Nationality: <?php echo $user['nationality'];?> <br>
         English: <?php echo $user['english'];?> <br>
         Phone: <?php echo $user['phone'];?> <br>
-
-        Certificates: <br>
+        <br> <br> <br>
+        Certificates: <br> 
         <?php 
+        if(count($certs) > 0) {
         foreach($certs as $cert) { echo $cert['type'] . '<br>'; ?>
-          <img src="../GOwebapp/certificates/<?php echo $cert['certImageFront'];?>"> <br>
-          <?php }  ?>
+          <img src="../GOwebapp/certificates/<?php echo $cert['certImageFront'];?>" width="300" height="300"> <br>
+          <?php }  } else{echo 'no certificates';}?>
 
       </div>
     
