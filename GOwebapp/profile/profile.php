@@ -23,7 +23,31 @@ $certs = get_cert($_SESSION['user']['userID']);
 
 <body>
     <h1>Profile</h1>
-    <?php echo $userDetail['firstname'];?>
+    <img src="../profileImages/<?php echo $userDetail['profileImage'];?>"> <br>
+    First Name: <?php echo $userDetail['firstname'];?> <br>
+    surname: <?php echo $userDetail['surname'];?><br>
+    email: <?php echo $userDetail['email'];?><br>
+    dob: <?php echo $userDetail['dob'];?><br>
+    sex: <?php echo $userDetail['sex'];?><br>
+    occupation: <?php echo $userDetail['occupation'];?><br>
+    position: <?php echo $userDetail['position'];?><br>
+    nationality: <?php echo $userDetail['nationality'];?><br>
+    english: <?php echo $userDetail['english'];?><br>
+    phone: <?php echo $userDetail['phone'];?><br>
+
+    <h3>Safepass</h3>
+    <?php if($safepass == true) { ?>
+        <img src="../certificates/<?php echo $safepass['certImageFront'];?>">
+    <?php } else {?>
+        No Safepass
+    <?php } ?>
+
+    <h3>Other certificates</h3>
+    <?php if(count($certs) > 0) { foreach($certs as $cert) { ?>
+        <img src="../certificates/<?php echo $cert['certImageFront'];?>" width="300" height="300">
+    <?php } } else { ?>
+        No other certificates.
+    <?php } ?>
 </body>
 
 </html>

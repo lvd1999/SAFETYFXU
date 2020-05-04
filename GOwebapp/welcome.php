@@ -10,7 +10,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-$_SESSION['user'] = userDetails($_SESSION['email']);
+$_SESSION['user'] = userDetails($_SESSION['id']);
 
 ?>
 
