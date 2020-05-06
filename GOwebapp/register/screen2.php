@@ -23,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $target_file = $target_dir . basename($profileImageName);
 
     // validate image size. Size is calculated in Bytes
-    if ($_FILES['profileImage']['size'] > 200000) {
-        $msg = "Image size should not be greated than 200Kb";
+    if ($_FILES['profileImage']['size'] > 2000000) {
+        $msg = "Image size should not be greated than 2mb";
         $msg_class = "alert-danger";
     }
     // check if file exists

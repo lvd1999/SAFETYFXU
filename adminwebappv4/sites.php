@@ -121,7 +121,7 @@ if (!isset($_SESSION["adminloggedin"]) || $_SESSION["adminloggedin"] !== true) {
 					
 				</div> -->
 					
-				<h1>new current sites</h1>
+				<h1>Current sites</h1>
 				<?php 
 				foreach($sites as $site) { ?>
 					<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#site<?php echo $site['buildingsiteID'];?>" aria-expanded="false" aria-controls="collapseExample">
