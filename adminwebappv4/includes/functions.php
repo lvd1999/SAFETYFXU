@@ -415,6 +415,7 @@ function docsBySite($siteID)
     global $pdo;
     $stm = $pdo->prepare("SELECT * FROM documentsites  
     JOIN documents on documentsites.documents_documentID = documents.documentID
+    JOIN buildingsites on buildingsites.buildingsiteID = documentsites.buildingsites_buildingsiteID
     WHERE buildingsites_buildingsiteID = ?");
     $stm->bindValue(1, $siteID);
     $stm->execute();
