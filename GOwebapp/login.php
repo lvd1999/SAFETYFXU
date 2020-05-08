@@ -59,8 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
 
-                            // Redirect user to welcome page
-                            header("location: welcome.php");
+                            // Redirect user to home page
+                            header("location: home.php");
                         } else {
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -127,10 +127,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </div>
                   <form class="user" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="form-group">
-                      <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="email" name="email" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <p class="text-danger"><?php echo $email_err;?></p>
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input type="password" name="password" class="form-control form-control-user" placeholder="Password">
+                      <p class="text-danger"><?php echo $password_err;?></p>
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
