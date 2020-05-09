@@ -34,6 +34,12 @@
     <span>Register Site</span></a>
 </li>
 
+<li class="nav-item <?php if ($page == 'workingsite') {echo 'active';};?>">
+  <a class="nav-link" href="working-site.php">
+  <i class="fas fa-fw fa-truck-pickup"></i>
+    <span>Working Sites</span></a>
+</li>
+
 <li class="nav-item">
   <a class="nav-link" href="pdf.php">
   <i class="fas fa-fw fa-copy"></i>
