@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $companyName = $_POST['companyName'];
     $email = $_POST['email'];
     $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
+    $surname = $_POST['surname'];
     $address = $_POST['address'];
     $city = $_POST['city'];
     $country = $_POST['country'];
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     move_uploaded_file($_FILES["profileImage"]["tmp_name"], $target_file);
     // Prepare an insert statement
-    $sql = "UPDATE admins SET image=?, companyName=?, email=?, firstname=?, lastname=?, address=?, city=?, country=?, eircode=?, landlineNumber=?, mobileNumber=? WHERE username=?";
+    $sql = "UPDATE admins SET image=?, companyName=?, email=?, firstname=?, surname=?, address=?, city=?, country=?, eircode=?, landlineNumber=?, mobileNumber=? WHERE username=?";
     $stmt = $pdo->prepare($sql);
     
     // Attempt to execute the prepared statement

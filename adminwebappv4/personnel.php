@@ -2,8 +2,17 @@
 session_start();
 require_once 'includes/functions.php';
 require_once 'includes/config.php';
+
 //variables
-$sites = get_sites($_SESSION['admin']['adminID']);
+$_SESSION['admin'] = adminDetails($_SESSION['adminid']);
+$company_name = $_SESSION['admin']['companyName'];
+$username = $_SESSION['username'];
+
+// Check if the user is logged in, if not then redirect him to login page
+if (!isset($_SESSION["adminloggedin"]) || $_SESSION["adminloggedin"] !== true) {
+    header("location: login.php");
+    exit;
+}
 ?>
 
 
@@ -12,25 +21,27 @@ $sites = get_sites($_SESSION['admin']['adminID']);
 
 <head>
 
-  <?php $page='personnel'; include 'includes/head.php'; ?>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <?php $page='personnel'; include 'includes/head.php'; echo'<style>.per h4{  background-color: #FFE400;
+  color: #282828 !important;}</style>' ?>
+
 
 </head>
 
+
+
 <body>
 
-  <div class="d-flex" id="wrapper">
-
-    <?php include 'includes/sidebar.php'; ?>
-
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-
-      <?php include 'includes/menubar.php'; ?>
-
-
-
-      <div class="container-fluid">
+<?php $page='dashboard'; include 'includes/sidebar.php'; ?>
+ <div id="right-panel" class="right-panel">
+   <div class="wrapper" id="wrapper">
+      <!-- Page Content -->
+        <?php include 'includes/menubar.php'; ?>
+     <div class="main-panel">  
+      <!-- /#page-content-wrapper -->
+      <div class="content">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-top: -2%">
+          <h3>Personnel</h3>
+        </div>
       <!-- all members by site -->
         <!-- <?php
           foreach($sites as $site) {
@@ -54,7 +65,7 @@ $sites = get_sites($_SESSION['admin']['adminID']);
       <?php
       $members = AllMembersByAdminGroupByUser($_SESSION['admin']['adminID']);
       if(count($members) > 1) { ?>
-        <table class="table">
+        <table class="comic2">
         <thead>
           <tr>
             <th scope="col">Name</th>
@@ -65,12 +76,12 @@ $sites = get_sites($_SESSION['admin']['adminID']);
         <tbody>
         <?php foreach($members as $member) { ?>
             <tr>
-              <td><a href="view-user.php?userid=<?php echo $member['userID'];?>"><?php echo $member['firstname'] . ' ' . $member['surname'];?></a></td>
+              <td><a href="view-user.php?userid=<?php echo $member['userID'];?>" style="color:black; font-size:25px;"><?php echo $member['firstname'] . ' ' . $member['surname'];?></a></td>
               <td><?php echo $member['occupation'];?></td>
               <!-- for sites -->
               <?php $workingsites = workingSitesByUserToAdmin($member['userID'], $_SESSION['admin']['adminID']);?>
               <td><?php foreach($workingsites as $workingsite) {
-          echo '<span class="badge badge-light">'.$workingsite['sitename'].'</span>';
+                echo '<span>'.$workingsite['sitename'].'</span><br>';
         } ?></td>
               
             </tr>
@@ -80,8 +91,8 @@ $sites = get_sites($_SESSION['admin']['adminID']);
         </tbody>
           </table>
       <?php } ?>
-
-
+        </div>
+         
 </div>
 
     </div>
@@ -91,7 +102,7 @@ $sites = get_sites($_SESSION['admin']['adminID']);
   <!-- /#wrapper -->
 
   <?php include 'includes/footer.php'; ?>
-
+  <script src="./js/demo.js"></script>
 
 </body>
 
